@@ -1,13 +1,13 @@
 const express = require('express')
-const eexphbs = require('express-handlebars')
-
-app.engine = express()
+const exphbs = require('express-handlebars')
 
 const app = express()
+
+app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
 
 app.get('/', (req, res) => {
-    res.send('eae')
+    res.render('home')
 })
 
 app.listen(3000)
