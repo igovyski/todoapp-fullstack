@@ -9,6 +9,30 @@ app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
 
+app.use(express.urlencoded({
+    extended: true
+}))
+
+app.use(express.json())
+
+app.post('/create', (req, res) => {
+    const description = req.body.description
+    const completed = 0
+
+    const sql = `
+        insert into tasks(description, completed)
+        values ('${description}', '${completed}')
+    `
+
+    connection.query(sql, (erro) => {
+        if (erro) {
+            return console.log(erro)
+        }
+        res.redirect('/')
+    })
+
+})
+
 app.get('/', (req, res) => {
     res.render('home')
 })
@@ -33,5 +57,3 @@ connection.connect((erro) => {
     })
 
 })
-
-app.listen(3000)
