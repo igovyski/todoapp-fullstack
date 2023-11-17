@@ -4,17 +4,10 @@
         {{#each tasks}}
         <div class="task">
             <form action="/complete" method="post">
-                {{#if this.completed}}
-                <div class="completed">
-                    <input type="checkbox" id="task-{{this.id}}" checked onchange="decompleteTask({{this.id}})">
-                    <label for="task-{{this.id}}">{{this.description}}</label>
-                </div>
-                {{else}}
                 <div>
                     <input type="checkbox" id="task-{{this.id}}" onchange="completeTask({{this.id}})">
                     <label for="task-{{this.id}}">{{this.description}}</label>
                 </div>
-                {{/if}}
 
                 <button>
                     <img src="/images/x-icon.png" alt="">
@@ -27,9 +20,9 @@
             <p>{{quantityActiveTasks}} active tasks</p>
 
             <div class="buttons">
-                <a href="" class="active">All</a>
-                <a href="">Actives</a>
-                <a href="">Completed</a>
+                <a href="/">All</a>
+                <a href="/actives" class="active">Actives</a>
+                <a href="/completed">Completed</a>
             </div>
 
             <a href="">Clean tasks</a>
@@ -37,8 +30,8 @@
     </section>
 
     <section class="buttons">
-        <a href="/" class="active">All</a>
-        <a href="/actives">Actives</a>
-        <a href="/completed">Completed</a>
+        <a href="" class="active">All</a>
+        <a href="">Actives</a>
+        <a href="">Completed</a>
     </section>
 </main>

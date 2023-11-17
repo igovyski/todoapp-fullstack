@@ -75,6 +75,34 @@ app.post('/create', (req, res) => {
 
 })
 
+app.get('/actives', (req, res) => {
+    const sql = 'select * from tasks'
+
+    connection.query(sql, (error, datas) => {
+        if (error) {
+            return console.log(error)
+        }
+
+        const tasks = datas.map((data) => {
+            return {
+                id: data.id,
+                description: data.description,
+                completed: data.completed === 0 ? false : true
+            }
+        })
+
+        const activeTasks = tasks.filter((task) => {
+            return task.completed === false && task
+        })
+
+        const quantityActiveTasks = activeTasks.length
+
+        res.render('home', { tasks, quantityActiveTasks })
+        
+    })
+ 
+})
+
 app.get('/', (req, res) => {
     const sql = 'select * from tasks'
 
