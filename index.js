@@ -24,17 +24,37 @@ app.post('/create', (req, res) => {
         values ('${description}', '${completed}')
     `
 
-    connection.query(sql, (erro) => {
-        if (erro) {
-            return console.log(erro)
+    connection.query(sql, (error) => {
+        if (error) {
+            return console.log(error)
         }
+
         res.redirect('/')
+        
     })
 
 })
 
 app.get('/', (req, res) => {
-    res.render('home')
+    const sql = 'select * from tasks'
+
+    connection.query(sql, (error) => {
+        if (error) {
+            return console.log(error)
+        }
+
+        const tasks = datas.map((data) => {
+            return {
+                id: data.id,
+                description: data.description,
+                completed: data.completed === 0 ? false : true
+            }
+        })
+
+        res.render('home')
+        
+    })
+ 
 })
 
 const connection = mysql.createConnection({
@@ -45,9 +65,9 @@ const connection = mysql.createConnection({
     port: 3306
 })
 
-connection.connect((erro) => {
-    if (erro) {
-        return console.log(erro)
+connection.connect((error) => {
+    if (error) {
+        return console.log(error)
     }
 
     console.log("I'm connected on MySQL")
