@@ -38,7 +38,7 @@ app.post('/create', (req, res) => {
 app.get('/', (req, res) => {
     const sql = 'select * from tasks'
 
-    connection.query(sql, (error) => {
+    connection.query(sql, (error, datas) => {
         if (error) {
             return console.log(error)
         }
@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
             }
         })
 
-        res.render('home')
+        res.render('home', { tasks })
         
     })
  

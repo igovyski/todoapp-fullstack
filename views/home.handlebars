@@ -1,10 +1,12 @@
 <main>
     <section class="tasks">
+
+        {{#each tasks}}
         <div class="task">
             <form action="">
                 <div>
-                    <input type="radio" name="" id="task-1">
-                    <label for="task-1">Finish JavaScript course</label>
+                    <input type="checkbox" name="" id="task-{{this.id}}">
+                    <label for="task-{{this.id}}">{{this.description}}</label>
                 </div>
 
                 <button>
@@ -12,30 +14,8 @@
                 </button>
             </form>
         </div>
-        <div class="task">
-            <form action="">
-                <div>
-                    <input type="radio" name="" id="task-1">
-                    <label for="task-1">Finish JavaScript course</label>
-                </div>
+        {{/each}}
 
-                <button>
-                    <img src="/images/x-icon.png" alt="">
-                </button>
-            </form>
-        </div>
-        <div class="task">
-            <form action="">
-                <div>
-                    <input type="radio" name="" id="task-1">
-                    <label for="task-1">Finish JavaScript course</label>
-                </div>
-
-                <button>
-                    <img src="/images/x-icon.png" alt="">
-                </button>
-            </form>
-        </div>
         <div class="info">
             <p>5 active tasks</p>
 
