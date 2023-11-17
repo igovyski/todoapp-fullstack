@@ -13,12 +13,25 @@ app.get('/', (req, res) => {
     res.render('home')
 })
 
-const conn = mysql.createConnection({
+const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'root',
     database: 'todoapp',
-    port: 330
+    port: 3306
+})
+
+connection.connect((erro) => {
+    if (erro) {
+        return console.log(erro)
+    }
+
+    console.log("I'm connected on MySQL")
+
+    app.listen(3000, () => {
+        console.log('Server is running on Port: 3000')
+    })
+
 })
 
 app.listen(3000)
