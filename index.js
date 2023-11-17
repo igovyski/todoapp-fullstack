@@ -15,6 +15,26 @@ app.use(express.urlencoded({
 
 app.use(express.json())
 
+app.post('/complete', (req, res) => {
+    const id = req.body.id
+
+    const sql = `
+        update tasks
+        set completed = 1
+        where id = ${id}
+    `
+    
+    connection.query(sql, (error) => {
+        if (error) {
+            return console.log(error)
+        }
+
+        res.redirect('/')
+        
+    })
+
+})
+
 app.post('/create', (req, res) => {
     const description = req.body.description
     const completed = 0

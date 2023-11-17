@@ -3,11 +3,18 @@
 
         {{#each tasks}}
         <div class="task">
-            <form action="">
-                <div>
-                    <input type="checkbox" name="" id="task-{{this.id}}">
+            <form action="/complete" method="post">
+                {{#if this.completed}}
+                <div class="completed">
+                    <input type="checkbox" id="task-{{this.id}}" checked>
                     <label for="task-{{this.id}}">{{this.description}}</label>
                 </div>
+                {{else}}
+                <div>
+                    <input type="checkbox" id="task-{{this.id}}" onchange="completeTask({{this.id}})">
+                    <label for="task-{{this.id}}">{{this.description}}</label>
+                </div>
+                {{/if}}
 
                 <button>
                     <img src="/images/x-icon.png" alt="">
