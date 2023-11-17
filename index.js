@@ -16,6 +16,26 @@ app.use(express.urlencoded({
 app.use(express.json())
 
 // rotas
+
+app.post('/delete', (req, res) => {
+    const id = req.body.id
+
+    const sql = `
+        delete from tasks
+        where id = ${id}
+    `
+    
+    connection.query(sql, (error) => {
+        if (error) {
+            return console.log(error)
+        }
+
+        res.redirect('/')
+        
+    })
+
+})
+
 app.post('/complete', (req, res) => {
     const id = req.body.id
 

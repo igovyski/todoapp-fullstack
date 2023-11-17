@@ -3,7 +3,7 @@
 
         {{#each tasks}}
         <div class="task">
-            <form action="/complete" method="post">
+            <form action="">
                 {{#if this.completed}}
                 <div class="completed">
                     <input type="checkbox" id="task-{{this.id}}" checked onchange="decompleteTask({{this.id}})">
@@ -16,7 +16,7 @@
                 </div>
                 {{/if}}
 
-                <button>
+                <button onclick="deleteTask({{this.id}})">
                     <img src="/images/x-icon.png" alt="">
                 </button>
             </form>
