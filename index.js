@@ -23,6 +23,26 @@ app.post('/complete', (req, res) => {
         set completed = 1
         where id = ${id}
     `
+
+    connection.query(sql, (error) => {
+        if (error) {
+            return console.log(error)
+        }
+
+        res.redirect('/')
+        
+    })
+
+})
+
+app.post('/decomplete', (req, res) => {
+    const id = req.body.id
+
+    const sql = `
+        update tasks
+        set completed = 0
+        where id = ${id}
+    `
     
     connection.query(sql, (error) => {
         if (error) {
@@ -71,7 +91,13 @@ app.get('/', (req, res) => {
             }
         })
 
-        res.render('home', { tasks })
+        const activeTasks = tasks.filter((task) => {
+            return task.completed === false && task
+        })
+
+        const quantityActiveTasks = activeTasks.length
+
+        res.render('home', { tasks, quantityActiveTasks })
         
     })
  

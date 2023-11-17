@@ -6,7 +6,7 @@
             <form action="/complete" method="post">
                 {{#if this.completed}}
                 <div class="completed">
-                    <input type="checkbox" id="task-{{this.id}}" checked>
+                    <input type="checkbox" id="task-{{this.id}}" checked onchange="decompleteTask({{this.id}})">
                     <label for="task-{{this.id}}">{{this.description}}</label>
                 </div>
                 {{else}}
@@ -24,7 +24,7 @@
         {{/each}}
 
         <div class="info">
-            <p>5 active tasks</p>
+            <p>{{quantityActiveTasks}} active tasks</p>
 
             <div class="buttons">
                 <a href="" class="active">All</a>
