@@ -17,6 +17,21 @@ app.use(express.json())
 
 // rotas
 
+app.get('/cleantasks', (req, res) => {
+
+    const sql = 'delete from tasks'
+    
+    connection.query(sql, (error) => {
+        if (error) {
+            return console.log(error)
+        }
+
+        res.redirect('/')
+        
+    })
+
+})
+
 app.post('/delete', (req, res) => {
     const id = req.body.id
 

@@ -8,7 +8,7 @@
                     <input type="checkbox" id="task-{{this.id}}" checked onchange="decompleteTask({{this.id}})">
                     <label for="task-{{this.id}}">{{this.description}}</label>
                 </div>
-                <button>
+                <button onclick="deleteTask({{this.id}})">
                     <img src="/images/x-icon.png" alt="">
                 </button>
             </form>
@@ -24,7 +24,7 @@
                 <a href="/completed" class="active">Completed</a>
             </div>
 
-            <a href="">Clean tasks</a>
+            <a href="/cleantasks">Clean tasks</a>
         </div>
     </section>
 
